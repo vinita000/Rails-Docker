@@ -1,0 +1,34 @@
+version: '2'
+services:
+  db:
+    image: arm64v8/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: noteapp
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: password
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql  # Mount a named volume to persist database data
+
+  app:
+    build: .
+    volumes:
+      - ".:/Rails-Docker"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DB_USER: root
+      DB_NAME: noteapp
+      DB_PASSWORD: password
+      DB_HOST: db
+      RAILS_ENV: development
+      public_output_path: packs
+    command: bundle exec rails server -b 0.0.0.0 -p 3000
+
+volumes:
+  db_data:  # Define the named volume for the database data
