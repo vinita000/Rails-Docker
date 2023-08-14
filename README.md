@@ -72,3 +72,6 @@ ubuntu@ip-172-31-94-15:~/Rails-Docker$ sudo docker start 83c8067cb9db
 
 
 sudo docker ps
+sudo docker ps -a
+
+sudo docker start 83c8067cb9db

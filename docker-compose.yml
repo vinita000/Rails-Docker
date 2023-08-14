@@ -1,8 +1,8 @@
 version: '2'
 services:
   db:
-    # image: arm64v8/mysql
-    image: mysql/latest
+    image: arm64v8/mysql
+    # image: mysql/latest
     # restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
