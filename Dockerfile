@@ -24,4 +24,6 @@ RUN node -v
 RUN npm install -g yarn
 RUN npm install
 
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3000"]
+
 ADD . /Rails-Docker
